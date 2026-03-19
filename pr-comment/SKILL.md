@@ -8,19 +8,41 @@ context: fork
 
 ## 処理フロー
 
-1. **PR情報の取得** — `mcp__github__list_pull_requests` で現在のブランチに対応するPRを取得
-2. **差分の取得** — `mcp__github__get_pull_request_files` で変更ファイル一覧を取得
+1. **PR情報の取得** — `gh pr view --json number,title,body` で現在のブランチに対応するPRを取得
+2. **差分の取得** — `gh pr diff` または `gh pr view --json files` で変更ファイル一覧を取得
 3. **変更内容の分析** — 差分を分析し、以下を特定：
    - 主な変更点（機能追加/修正/削除）
    - 影響範囲
    - 技術的なポイント
 4. **説明文生成** — 下記フォーマットで説明を生成
-5. **PRのDescription更新** — `mcp__github__update_issue` でPRのbodyを更新
+5. **PRのDescription更新** — `gh pr edit --body` でPRのbodyを更新
+
+## ghコマンド例
+
+```bash
+# 現在のブランチのPR情報を取得
+gh pr view --json number,title,body,headRefName,baseRefName
+
+# PR番号を指定して取得
+gh pr view 123 --json number,title,body
+
+# 変更ファイル一覧を取得
+gh pr view --json files
+
+# PRの差分を取得
+gh pr diff
+
+# PRのDescriptionを更新
+gh pr edit --body "新しい説明文"
+
+# PRのDescriptionをファイルから更新
+gh pr edit --body-file description.md
+```
 
 ## 重要な注意事項
 
-- **PRのDescription（body）を更新する**: `mcp__github__add_issue_comment` はコメント欄への投稿となるため使用しない。PR作成者としてDescriptionを更新するには `mcp__github__update_issue` を使用すること。
-- PRはGitHub APIではIssueとして扱われるため、`update_issue` でPRのbodyも更新可能。
+- **PRのDescription（body）を更新する**: `gh pr comment` はコメント欄への投稿となるため使用しない。PR作成者としてDescriptionを更新するには `gh pr edit --body` を使用すること。
+- ghコマンドは現在のブランチに対応するPRを自動検出するため、通常はPR番号の指定は不要。
 
 ## 出力フォーマット
 
