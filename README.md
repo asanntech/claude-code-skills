@@ -10,6 +10,7 @@
 │   ├── clean-branches/   ローカルの不要ブランチを一括削除
 │   ├── code-review/      コードレビューを実施
 │   ├── commit/           変更を分析しコミットメッセージを生成
+│   ├── mental-model-builder/  要素間の関係を読み解き最適な表現形式で可視化
 │   ├── pr-comment/        PR の変更内容を説明するコメントを投稿
 │   └── update-readme/    変更内容を分析し README を最小編集で更新
 └── claude-md/       # プロジェクト横断で共有する CLAUDE.md ルール
@@ -23,6 +24,7 @@
 | `clean-branches` | 現在のブランチ・`main`/`release`/`staging`/`develop` を保護し、不要なローカルブランチを削除 | 「ブランチを整理して」「/clean-branches」 |
 | `code-review` | コードの品質・可読性・保守性・セキュリティを評価し改善提案 | 「コードをレビューして」「このPRを確認して」 |
 | `commit` | 変更内容を分析しコミットメッセージを生成、確認後にコミット実行 | 「コミットして」「/commit」 |
+| `mental-model-builder` | 文章・概念の要素間の関係を読み解き、構造図・フロー・対比表などで可視化・整理 | 「メンタルモデルを作って」「構造を整理して」 |
 | `pr-comment` | PR の変更内容を分析し、他のエンジニア向けの説明を GitHub PR に投稿 | 「PRにコメントして」「PRの説明を書いて」 |
 | `update-readme` | 変更差分を分析し、README への反映が必要な公開面の変更だけを最小編集で更新 | 「READMEを更新して」「/update-readme」 |
 
